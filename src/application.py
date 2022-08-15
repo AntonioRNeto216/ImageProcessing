@@ -1,4 +1,5 @@
 import cv2 as cv
+import time
 from typing import Tuple
 
 from .plot import Plot
@@ -53,14 +54,14 @@ class Application:
 
     def _capture_frame(self) -> None:
         """
-        Stays in an infinite loop until the user press 'q' key.
+        Stays in an infinite loop until the user press 'q' key or end of the video.
         """
         self._plot.init_plot_config()
         while True:
             ret, self._source_frame = self._video_capture.read()
             
             if not ret:
-                print("Can not receive frame. Exiting!")
+                time.sleep(1.5)
                 break
             
             height, width = self._source_frame.shape[:2]
@@ -77,10 +78,10 @@ class Application:
             cv.imshow('Modified frame', self._modified_frame)
 
             if cv.waitKey(1) == ord('q'):
-                self._video_capture.release()
-                cv.destroyAllWindows()
                 break
-        
+
+        self._video_capture.release()
+        cv.destroyAllWindows()
         self._plot.end_plot()
 
     def _increase_brightness(self) -> None:
@@ -101,7 +102,7 @@ class Application:
         """
         Operations for face detection.\n
         Note: Instead of doing 'fy:fy+fh' in region of interest I've rounded 'fh/2' and added 'fy'. 
-        In my opinion, this approach can minimize some classification mistakes.
+        In my opinion, this approach can minimize some classification mistakes (plot helps to visualize that).
         """
         number_eyes_detected = 0
         number_face_detected = 0
@@ -110,7 +111,7 @@ class Application:
         for (fx, fy, fw, fh) in face:
             number_face_detected += 1
             cv.rectangle(self._modified_frame, (fx, fy), (fx + fw, fy + fh), (255, 0, 0), 3)
-            region_of_interest = self._modified_frame[fy:fy+fh, fx:fx+fw]
+            region_of_interest = self._modified_frame[fy:fy+round(fh/2), fx:fx+fw]
             eyes = self._eye_cascade.detectMultiScale(region_of_interest, 1.1, 6)
             for (ex, ey, ew, eh) in eyes:
                 number_eyes_detected += 1

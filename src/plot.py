@@ -4,14 +4,30 @@ import matplotlib.pyplot as plt
 
 
 class Plot:
+    """
+    Deals with all plot configurations and manipulations.
+    """
+    
     def __init__(self) -> None:
+        """
+        Constructor only defines default values for the object.
+        """
+        self._default_values()
+
+    def _default_values(self) -> None:
+        """
+        Sets up all default values.
+        """
         self._x_values = []
         self._y_eyes_values = []
         self._y_face_values = []
         self._max_value_y_eyes = 2
         self._max_value_y_face = 2
-
-    def init_plot_config(self):
+    
+    def init_plot_config(self) -> None:
+        """
+        Sets up all init configuration for a plot.
+        """
         plt.ion()
 
         self._figure, (self._ax_eyes, self._ax_face) = plt.subplots(nrows=2, figsize=(5,4), sharex=True)
@@ -27,7 +43,10 @@ class Plot:
         self._ax_face.set_xlabel('Number of Iterations', fontsize=8)
         
 
-    def draw(self, new_y_eyes_value: int, new_y_face_value: int):
+    def draw(self, new_y_eyes_value: int, new_y_face_value: int) -> None:
+        """
+        Draws new data in the current plot.
+        """
         self._x_values.append(len(self._x_values))
         self._y_eyes_values.append(new_y_eyes_value)
         self._y_face_values.append(new_y_face_value)
@@ -53,6 +72,16 @@ class Plot:
         self._figure.canvas.draw()
         self._figure.canvas.flush_events()
 
-    def end_plot(self):
-        plt.savefig(f'{os.getcwd()}/plots/{datetime.datetime.now()}.png')
+    def end_plot(self) -> None:
+        """
+        Saves and closes all plots. Also, defines again default values for a new execution.
+        """
+        plot_folder_path = f'{os.getcwd()}/plots'
+        
+        if not os.path.exists(plot_folder_path):
+            os.makedirs(plot_folder_path)
+        
+        plt.savefig(f'{plot_folder_path}/{datetime.datetime.now()}.png')
         plt.close('all')
+
+        self._default_values()

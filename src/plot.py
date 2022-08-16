@@ -35,10 +35,9 @@ class Plot:
         self._line_eyes, = self._ax_eyes.plot(self._x_values, self._y_eyes_values, color='red', marker='o', linewidth=0.2, markersize=2)
         self._line_face, = self._ax_face.plot(self._x_values, self._y_face_values, color='blue', marker='o', linewidth=0.2, markersize=2)
 
-        self._ax_eyes.set_title('Dynamic Plot of Eyes Detection', fontsize=12)
+        self._ax_eyes.set_title('Dynamic Plot')
         self._ax_eyes.set_ylabel('Number of Eyes Detected', fontsize=8)
 
-        self._ax_face.set_title('Dynamic Plot of Face Detection', fontsize=12)
         self._ax_face.set_ylabel('Number of Faces Detected', fontsize=8)
         self._ax_face.set_xlabel('Number of Iterations', fontsize=8)
         

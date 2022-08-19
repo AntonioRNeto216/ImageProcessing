@@ -6,7 +6,7 @@ Image Processing project using:
 - Matplotlib: https://matplotlib.org/
 
 ## 📎 Motivation
-The project purpose was to practice my knowledge in Python and, in addition, get experience in OpenCV, Tkinter and Matplotlib.
+The project purpose was to improve my knowledge in Python and, in addition, get experience on OpenCV, Tkinter and Matplotlib.
 
 ## 📋 Features
 - User interface.
@@ -22,7 +22,7 @@ The project purpose was to practice my knowledge in Python and, in addition, get
 ![2022-08-15 17:44:32 918204](https://user-images.githubusercontent.com/56635452/184772752-3fbe5cfd-7254-4295-9512-1b747ee2d1a0.png)
 
 ## 📈 Note about face detection (Region of interest)
-The region of interest (ROI) is where the eye cascade classifier need to look for an eyes pair, because ROI is a region returned by face cascade classifier.
+The region of interest (ROI) is where the eye cascade classifier needs to look for a pair of eyes, because ROI is a region returned by face cascade classifier.
 
 My first approach to calculate ROI was setting up y axis as:
 ```

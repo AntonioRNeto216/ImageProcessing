@@ -28,15 +28,20 @@ My first approach to calculate ROI was setting up y axis as:
 ```
 fy:fy+fh
 ```
-Output plot using Example2.mp4:
-
-![2022-08-15 16:08:32 444160](https://user-images.githubusercontent.com/56635452/184773947-de59bb42-08d2-4fad-b55e-fcdd9a920fd8.png)
+Output plot using Example2.mp4 (Click in the image to see plot video):
+<div align="left">
+      <a href="https://www.youtube.com/watch?v=dsKG1f1Ugzo">
+         <img src="https://user-images.githubusercontent.com/56635452/184773947-de59bb42-08d2-4fad-b55e-fcdd9a920fd8.png" style="width:50%;">
+      </a>
+</div>
 
 But in the video there is only one face and two eyes so I decided to change how y axis is defined to minimize some classification mistakes. In the approach below, the ROI is only a half of face region.
 ```
 fy:fy+round(fh/2)
 ```
-Output plot using Example2.mp4:
-
-![2022-08-15 16:46:18 423369](https://user-images.githubusercontent.com/56635452/184779395-d15f666c-1269-4f63-80e7-d49b9aaf1323.png)
-
+Output plot using Example2.mp4 (Click in the image to see plot video):
+<div align="left">
+      <a href="https://www.youtube.com/watch?v=ne12vNbTR3Q">
+         <img src="https://user-images.githubusercontent.com/56635452/184779395-d15f666c-1269-4f63-80e7-d49b9aaf1323.png" style="width:50%;">
+      </a>
+</div>
